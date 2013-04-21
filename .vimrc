@@ -12,11 +12,18 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'docunext/closetag.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'ervandew/supertab'
+Bundle 'derekwyatt/vim-scala'
 Bundle 'jpalardy/vim-slime'
-Bundle 'dsbraz/indentblocks-vim'
 Bundle 'dsbraz/tabnav-gvim'
+Bundle 'dsbraz/indentblocks-vim'
+Bundle 'vim-scripts/argtextobj.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'puppetlabs/puppet-syntax-vim'
+
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
 
 set nocompatible
 set showmode
@@ -25,13 +32,14 @@ set autoindent
 set autoread
 set autowrite
 set ruler
-set tabstop=2
 set sm
 set cursorline
 set expandtab
-set softtabstop=2
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set textwidth=79
+set relativenumber
 set showmatch
 set mousehide
 set noerrorbells
@@ -40,21 +48,17 @@ set title
 set hlsearch
 set incsearch
 set smartcase
-set nowrap
 set nobackup
 set noswapfile
 set directory=/tmp
 set laststatus=2
 set modelines=0
 set backspace=indent,eol,start
-set relativenumber
 set encoding=utf-8
 set clipboard=unnamed
 set guifont=Consolas:h14
 set guioptions-=r
 set guioptions-=L
-
-syntax enable
 
 if has('gui_running')
   set background=dark
@@ -62,10 +66,6 @@ if has('gui_running')
 endif
 
 autocmd BufWritePre * :%s/\s\+$//e
-
-filetype on
-filetype plugin on
-filetype indent on
 
 set wildmenu
 set wildmode=longest,list:longest
@@ -79,13 +79,19 @@ let g:SuperTabDefaultCompletionType = "context"
 set statusline=%<\ %n:%f%m\ %r%y\ %{fugitive#statusline()}\ %=%-35.(\line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
 " Leader key
-let mapleader=","
+let mapleader="/"
 
 " Clear the search buffer when hitting return
 nmap <CR> :nohlsearch<CR>
 
+" Insert new line
+nmap <C-CR> o
+nmap <C-S-CR> O
+imap <C-CR> <Esc>o
+imap <C-S-CR> <Esc>O
+
 " Search and replace
-nmap <leader>s * :%s/<C-r>///gc<left><left><left>
+nmap <leader>r * :%s/<C-r>///gc<left><left><left>
 
 " Indents
 vmap <silent> > >gv
@@ -100,6 +106,7 @@ nmap F gg=G
 " Ctrl-P
 let g:ctrlp_map = '<leader>o'
 let g:ctrlp_cmd = 'CtrlP'
+nmap <silent> <leader>O <Esc>:CtrlPCurWD<CR>
 nmap <silent> <leader>b <Esc>:CtrlPBuffer<CR>
 
 " Toggle Taglist
