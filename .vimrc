@@ -79,42 +79,34 @@ let g:SuperTabDefaultCompletionType = "context"
 set statusline=%<\ %n:%f%m\ %r%y\ %{fugitive#statusline()}\ %=%-35.(\line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
 " Leader key
-let mapleader="/"
-
-" Clear the search buffer when hitting return
-nmap <CR> :nohlsearch<CR>
-
-" Insert new line
-nmap <C-CR> o
-nmap <C-S-CR> O
-imap <C-CR> <Esc>o
-imap <C-S-CR> <Esc>O
+let mapleader=","
 
 " Search and replace
 nmap <leader>r * :%s/<C-r>///gc<left><left><left>
 
+" Clear search buffer
+nmap <esc> :nohlsearch<CR>
+
+" Insert new line
+imap <C-CR> <Esc>o
+imap <C-S-CR> <Esc>O
+
 " Indents
-vmap <silent> > >gv
-vmap <silent> < <gv
-nmap <silent> > >>
-nmap <silent> < <<
+vmap > >gv
+vmap < <gv
+nmap > >>
+nmap < <<
 
 " Formatting
 vmap F =
 nmap F gg=G
 
-" Ctrl-P
-let g:ctrlp_map = '<leader>o'
-let g:ctrlp_cmd = 'CtrlP'
-nmap <silent> <leader>O <Esc>:CtrlPCurWD<CR>
-nmap <silent> <leader>b <Esc>:CtrlPBuffer<CR>
+" Toggle NERDTree
+nmap <C-n> :NERDTreeToggle<CR>
 
 " Toggle Taglist
-nmap <silent> <leader>t :TlistToggle<cr>
-
-" Toggle NERDTree
-nmap <silent> <leader>p :NERDTreeToggle<CR>
+nmap <C-l> :TlistToggle<CR>
 
 " Next and previous tab
-nmap <silent> <C-tab> :tabnext<CR>
-nmap <silent> <C-S-tab> :tabprevious<CR>
+nmap <C-tab> :tabnext<CR>
+nmap <C-S-tab> :tabprevious<CR>
